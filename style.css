@@ -1,0 +1,11 @@
+body{
+  text-align: center;
+}
+
+#circles div{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(151, 29, 29);
+  display: inline-block;
+}
