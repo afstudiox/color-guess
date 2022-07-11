@@ -53,6 +53,6 @@ _Requisitos_
 
 
 ## ©️ Direitos Autorais
-Este projeto foi desenvolvido para fins de aprendizado, e desenvolvido por [Andre Felipe dos Santos](https://www.linkedin.com/in/afelipes/). 
-É permitido baixar ou clonar o repositório para fins de estudo, não é permitida a publicação de cópias totais ou parciais. 
+Este projeto foi desenvolvido para fins de aprendizado por [Andre Felipe dos Santos](https://www.linkedin.com/in/afelipes/). 
+É permitido baixar ou clonar o repositório para fins de estudo, porém não é permitida a publicação de cópias totais ou parciais do mesmo. 
 Esta isenção de responsabilidade não abrange bibliotecas e dependências, que estão sujeitas às suas respectivas licenças.
