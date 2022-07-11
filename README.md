@@ -1,7 +1,8 @@
 # Projeto Color Guess
 
 ## Sobre
-Aplicação de um jogo que tem por objetivo adivinhar a cor do código hexadecimal apresentado, clicando nos circulos coloridos e sua pontuação atualiza de acordo com os acertos.
+Aplicação de um jogo que tem por objetivo adivinhar a cor do código hexadecimal apresentado, clicando nos circulos coloridos e sua pontuação atualiza de acordo com os acertos.<br>
+[Teste a aplicação aqui](https://afstudiox.github.io/color-guess/)
 
 _Observações_
   - As cores são criadas dinâmicamente.
