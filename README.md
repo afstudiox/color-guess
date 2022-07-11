@@ -52,7 +52,7 @@ _Requisitos_
  - [StackOverflow](https://pt.stackoverflow.com/questions/tagged/javascript)
 
 
-## ©️ Copyright disclaimer
+## ©️ Direitos Autorais
 Este projeto foi desenvolvido para fins de aprendizado, e desenvolvido por [Andre Felipe dos Santos](https://www.linkedin.com/in/afelipes/). 
 É permitido baixar ou clonar o repositório para fins de estudo, não é permitida a publicação de cópias totais ou parciais. 
 Esta isenção de responsabilidade não abrange bibliotecas e dependências, que estão sujeitas às suas respectivas licenças.
