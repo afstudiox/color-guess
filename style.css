@@ -1,13 +1,68 @@
-body{
+body {
+  background-color: #f7f7f7;
+  color: #242424;
   font-family: 'Lato', sans-serif;
+  margin: 0;
+  min-height: 100vh;
   text-align: center;
 }
 
-#circles div{
-  width: 50px;
-  height: 50px;
+main {
+  margin: 0 auto;
+  max-width: 520px;
+  padding: 24px;
+}
+
+#title {
+  margin-top: 48px;
+}
+
+#rgb-color {
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#circles {
+  margin: 24px 0;
+}
+
+.ball {
+  border: 2px solid #242424;
   border-radius: 50%;
-  margin: 10px;
-  background-color: rgb(151, 29, 29);
+  cursor: pointer;
   display: inline-block;
+  height: 50px;
+  margin: 8px;
+  padding: 0;
+  transition: transform 0.2s ease;
+  width: 50px;
+}
+
+.ball:hover {
+  transform: scale(1.08);
+}
+
+.ball:focus {
+  outline: 3px solid #2f80ed;
+  outline-offset: 3px;
+}
+
+#answer {
+  min-height: 24px;
+}
+
+#reset-game {
+  background-color: #242424;
+  border: 0;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 16px;
+}
+
+#reset-game:hover {
+  background-color: #3a3a3a;
 }

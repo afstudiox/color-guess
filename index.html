@@ -11,24 +11,27 @@
 </head>
 <body>
   <header>
-    <h1 id='title'>Color Guess</h1>
+    <h1 id="title">Color Guess</h1>
   </header>
   <main>
-    <p id='rgb-color'></p>
-    <p>Placar : <span id='score'></span></p>
-    <div id=circles>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
+    <section aria-labelledby="rgb-color">
+      <p id="rgb-color"></p>
+      <p>Placar: <span id="score">0</span></p>
+    </section>
+
+    <div id="circles" aria-label="Opções de cores">
+      <button class="ball" type="button" aria-label="Cor 1"></button>
+      <button class="ball" type="button" aria-label="Cor 2"></button>
+      <button class="ball" type="button" aria-label="Cor 3"></button>
+      <button class="ball" type="button" aria-label="Cor 4"></button>
+      <button class="ball" type="button" aria-label="Cor 5"></button>
+      <button class="ball" type="button" aria-label="Cor 6"></button>
     </div>
-    <div>
-      <p id='answer'>Escolha uma cor</p>
-    </div>
-    <div>
-      <button id='reset-game'>Reiniciar o Jogo</button>
+
+    <p id="answer" aria-live="polite">Escolha uma cor</p>
+
+    <div class="actions">
+      <button id="reset-game" type="button">Reiniciar o Jogo</button>
     </div>
   </main>
   <script src="script.js"></script>
