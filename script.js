@@ -12,9 +12,6 @@ const rgbOrigem = document.querySelector('#rgb-color');
 // Seleciona o parágrafo usado para mostrar se o jogador acertou ou errou.
 const resposta = document.querySelector('#answer');
 
-// Seleciona o botão responsável por reiniciar uma rodada do jogo.
-const btnReset = document.querySelector('#reset-game');
-
 // Seleciona o elemento onde a pontuação será exibida.
 const txtPlacar = document.querySelector('#score');
 
@@ -51,7 +48,7 @@ function ballAleatorio() {
 }
 
 // Prepara uma nova rodada do jogo.
-function criaBalls() {
+function criaBalls(reiniciaMensagem = true) {
   // Percorre todas as bolas e atribui uma cor aleatória para cada uma.
   for (const ball of balls) {
     ball.style.backgroundColor = rgbAleatorio();
@@ -60,8 +57,10 @@ function criaBalls() {
   // Escolhe uma das cores já aplicadas nas bolas e mostra essa cor como desafio.
   rgbOrigem.textContent = balls[ballAleatorio()].style.backgroundColor;
 
-  // Reinicia a mensagem de resposta para o estado inicial da rodada.
-  resposta.textContent = 'Escolha uma cor';
+  // Reinicia a mensagem quando a rodada começa sem depender de acerto ou erro anterior.
+  if (reiniciaMensagem) {
+    resposta.textContent = 'Escolha uma cor';
+  }
 
   // Garante que o placar exibido na tela esteja sincronizado com a variável placar.
   atualizaPlacar();
@@ -79,16 +78,16 @@ function comparaCor(event) {
 
   // Compara a cor da bola clicada com o texto da cor sorteada.
   if (ballClicada.style.backgroundColor === rgbOrigem.textContent) {
-    resposta.textContent = 'Acertou!';
     placar += 3;
     atualizaPlacar();
-    criaBalls();
+    criaBalls(false);
+    resposta.textContent = 'Acertou! Nova cor sorteada.';
   } else {
-    resposta.textContent = 'Errou! Pontuação registrada.';
     registraPontuacao();
     placar = 0;
     atualizaPlacar();
-    criaBalls();
+    criaBalls(false);
+    resposta.textContent = 'Errou! Pontuação registrada.';
   }
 }
 
@@ -101,14 +100,19 @@ function buscaBestScores() {
     return [];
   }
 
-  // Converte a string JSON de volta para um array de números.
-  return JSON.parse(scoresSalvos);
-};
+  try {
+    // Converte a string JSON de volta para um array de números.
+    return JSON.parse(scoresSalvos);
+  } catch (error) {
+    return [];
+  }
+}
 
 // Salva as melhores pontuações no localStorage.
 function salvaBestScores(scores) {
-   localStorage.setItem(BEST_SCORES_KEY, scoresJSON);
-};
+  const scoresJSON = JSON.stringify(scores);
+  localStorage.setItem(BEST_SCORES_KEY, scoresJSON);
+}
 
 // Renderiza as melhores pontuações na tela.
 function renderizaBestScores() {
@@ -118,10 +122,10 @@ function renderizaBestScores() {
 
   for (const score of scores) {
     const item = document.createElement('li');
-    item.textContent = score;
+    item.textContent = `${score} pontos`;
     listaBestScores.appendChild(item);
   }
-};
+}
 
 // Registra a pontuação atual do jogador e atualiza a lista de melhores pontuações.
 function registraPontuacao() {

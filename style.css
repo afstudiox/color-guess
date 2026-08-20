@@ -60,10 +60,7 @@ main {
   min-height: 24px;
 }
 
-#reset-game:hover {
-  background-color: #3a3a3a;
-}
-
+/* Organiza a lista com as melhores pontuações salvas. */
 #best-scores {
   display: inline-block;
   padding-left: 24px;
