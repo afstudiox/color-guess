@@ -118,6 +118,20 @@ function renderizaBestScores() {
   }
 };
 
+// Registra a pontuação atual do jogador e atualiza a lista de melhores pontuações.
+function registraPontuacao() {
+  const scores = buscaBestScores();
+
+  scores.push(placar);
+
+  const melhoresScores = scores
+    .sort((scoreAtual, proximoScore) => proximoScore - scoreAtual)
+    .slice(0, 3);
+
+  salvaBestScores(melhoresScores);
+  renderizaBestScores();
+}
+
 // Adiciona um escutador de evento no container das bolas.
 // Assim, um único listener consegue tratar o clique em qualquer bola.
 circles.addEventListener('click', comparaCor);
