@@ -36,10 +36,14 @@
     <!-- Mensagem atual do jogo: estado inicial, acerto ou erro. -->
     <p id="answer" aria-live="polite">Escolha uma cor</p>
 
-    <!-- Controle para gerar uma nova rodada. -->
-    <div class="actions">
-      <button id="reset-game" type="button">Reiniciar o Jogo</button>
-    </div>
+    <!-- Área com as melhores pontuações. -->
+    <section aria-labelledby="best-scores-title">
+      <h2 id="best-scores-title">Melhores pontuações</h2>
+      <ol id="best-scores"></ol>
+    </section>
+
+
+
   </main>
   <script src="script.js"></script>
 </body>
