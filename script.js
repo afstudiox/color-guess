@@ -82,8 +82,13 @@ function comparaCor(event) {
     resposta.textContent = 'Acertou!';
     placar += 3;
     atualizaPlacar();
+    criaBalls();
   } else {
-    resposta.textContent = 'Errou! Tente novamente!';
+    resposta.textContent = 'Errou! Pontuação registrada.';
+    registraPontuacao();
+    placar = 0;
+    atualizaPlacar();
+    criaBalls();
   }
 }
 
