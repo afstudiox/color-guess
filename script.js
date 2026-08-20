@@ -48,7 +48,7 @@ function ballAleatorio() {
 }
 
 // Prepara uma nova rodada do jogo.
-function criaBalls(reiniciaMensagem = true) {
+function criaBalls() {
   // Percorre todas as bolas e atribui uma cor aleatória para cada uma.
   for (const ball of balls) {
     ball.style.backgroundColor = rgbAleatorio();
@@ -56,14 +56,6 @@ function criaBalls(reiniciaMensagem = true) {
 
   // Escolhe uma das cores já aplicadas nas bolas e mostra essa cor como desafio.
   rgbOrigem.textContent = balls[ballAleatorio()].style.backgroundColor;
-
-  // Reinicia a mensagem quando a rodada começa sem depender de acerto ou erro anterior.
-  if (reiniciaMensagem) {
-    resposta.textContent = 'Escolha uma cor';
-  }
-
-  // Garante que o placar exibido na tela esteja sincronizado com a variável placar.
-  atualizaPlacar();
 }
 
 // Compara a cor clicada pelo jogador com a cor exibida no desafio.
@@ -78,16 +70,9 @@ function comparaCor(event) {
 
   // Compara a cor da bola clicada com o texto da cor sorteada.
   if (ballClicada.style.backgroundColor === rgbOrigem.textContent) {
-    placar += 3;
-    atualizaPlacar();
-    criaBalls(false);
-    resposta.textContent = 'Acertou! Nova cor sorteada.';
+    registraAcerto();
   } else {
-    registraPontuacao();
-    placar = 0;
-    atualizaPlacar();
-    criaBalls(false);
-    resposta.textContent = 'Errou! Pontuação registrada.';
+    registraErro();
   }
 }
 
@@ -102,7 +87,13 @@ function buscaBestScores() {
 
   try {
     // Converte a string JSON de volta para um array de números.
-    return JSON.parse(scoresSalvos);
+    const scores = JSON.parse(scoresSalvos);
+
+    if (!Array.isArray(scores)) {
+      return [];
+    }
+
+    return scores.filter((score) => typeof score === 'number');
   } catch (error) {
     return [];
   }
@@ -127,11 +118,23 @@ function renderizaBestScores() {
   }
 }
 
-// Registra a pontuação atual do jogador e atualiza a lista de melhores pontuações.
-function registraPontuacao() {
+// Atualiza a pontuação da rodada quando o jogador acerta.
+function registraAcerto() {
+  placar += 3;
+  atualizaPlacar();
+  criaBalls();
+  resposta.textContent = 'Acertou! Nova cor sorteada.';
+}
+
+// Registra a pontuação final da rodada e atualiza a lista de melhores pontuações.
+function registraPontuacao(pontuacaoFinal) {
+  if (pontuacaoFinal <= 0) {
+    return;
+  }
+
   const scores = buscaBestScores();
 
-  scores.push(placar);
+  scores.push(pontuacaoFinal);
 
   const melhoresScores = scores
     .sort((scoreAtual, proximoScore) => proximoScore - scoreAtual)
@@ -141,10 +144,22 @@ function registraPontuacao() {
   renderizaBestScores();
 }
 
+// Finaliza a rodada quando o jogador erra.
+function registraErro() {
+  const pontuacaoFinal = placar;
+
+  registraPontuacao(pontuacaoFinal);
+  placar = 0;
+  atualizaPlacar();
+  criaBalls();
+  resposta.textContent = `Errou! Pontuação registrada: ${pontuacaoFinal}.`;
+}
+
 // Adiciona um escutador de evento no container das bolas.
 // Assim, um único listener consegue tratar o clique em qualquer bola.
 circles.addEventListener('click', comparaCor);
 
 // Cria as bolas e renderiza as melhores pontuações quando a página é carregada.
+atualizaPlacar();
 criaBalls();
 renderizaBestScores();
