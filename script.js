@@ -105,9 +105,23 @@ function salvaBestScores(scores) {
    localStorage.setItem(BEST_SCORES_KEY, scoresJSON);
 };
 
+// Renderiza as melhores pontuações na tela.
+function renderizaBestScores() {
+  const scores = buscaBestScores();
+
+  listaBestScores.innerHTML = '';
+
+  for (const score of scores) {
+    const item = document.createElement('li');
+    item.textContent = score;
+    listaBestScores.appendChild(item);
+  }
+};
+
 // Adiciona um escutador de evento no container das bolas.
 // Assim, um único listener consegue tratar o clique em qualquer bola.
 circles.addEventListener('click', comparaCor);
 
-// Inicia o jogo assim que o script é carregado.
+// Cria as bolas e renderiza as melhores pontuações quando a página é carregada.
 criaBalls();
+renderizaBestScores();
