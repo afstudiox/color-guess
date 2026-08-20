@@ -8,7 +8,7 @@ Aplicação de um jogo que tem por objetivo adivinhar a cor do código RGB apres
 
 _Observações_
   - As cores são criadas dinamicamente.
-  - É possível reiniciar o jogo a qualquer momento.
+  - As 3 melhores pontuações ficam salvas no navegador (localStorage) e são exibidas em um ranking.
 
 _Requisitos_
   - Utilizar somente HTML5, CSS e JavaScript ES6.
@@ -29,13 +29,12 @@ Em uma revisão posterior, o projeto foi mantido sem frameworks ou ferramentas d
 
 
 ## Desafios
-- [x] - Adicionar um título com o nome do seu jogo
-- [x] - Adicionar dinamicamente um texto com o código RGB a ser adivinhado
-- [x] - Adicionar dinamicamente uma paleta de cores para serem adivinhadas
-- [x] - Adicionar as cores da paleta aos círculos criados
-- [x] - Ao clicar em um circulo colorido, mostrar um texto indicando se está correto
-- [x] - Criar um botão para iniciar/reiniciar o jogo
-- [x] - `Bônus` Criar um placar que incremente 3 pontos para cada acerto no jogo
+- [x] - Exibir um título com o nome do jogo
+- [x] - Exibir dinamicamente o código RGB a ser adivinhado
+- [x] - Gerar cores RGB aleatórias para as opções
+- [x] - Atribuir as cores geradas aos círculos da paleta
+- [x] - Ao clicar em um círculo, indicar se a cor escolhida está correta ou não
+- [x] - Incrementar o placar em 3 pontos a cada acerto
 
 
 ## Stacks utilizadas
