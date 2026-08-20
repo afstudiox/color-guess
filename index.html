@@ -4,30 +4,43 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Color Guess</title>
 </head>
 <body>
+  <!-- Cabeçalho principal do jogo. -->
   <header>
-    <h1 id='title'>Color Guess</h1>
+    <h1 id="title">Color Guess</h1>
   </header>
+
+  <!-- Área principal com desafio, placar, opções e ranking. -->
   <main>
-    <p id='rgb-color'></p>
-    <p>Placar : <span id='score'></span></p>
-    <div id=circles>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
+    <!-- Mostra a cor que o jogador precisa encontrar e o placar atual. -->
+    <section aria-labelledby="rgb-color">
+      <p id="rgb-color"></p>
+      <p>Placar: <span id="score">0</span></p>
+    </section>
+
+    <!-- Botões que representam as opções de cores. -->
+    <div id="circles" aria-label="Opções de cores">
+      <button class="ball" type="button" aria-label="Cor 1"></button>
+      <button class="ball" type="button" aria-label="Cor 2"></button>
+      <button class="ball" type="button" aria-label="Cor 3"></button>
+      <button class="ball" type="button" aria-label="Cor 4"></button>
+      <button class="ball" type="button" aria-label="Cor 5"></button>
+      <button class="ball" type="button" aria-label="Cor 6"></button>
     </div>
-    <div>
-      <p id='answer'>Escolha uma cor</p>
-    </div>
-    <div>
-      <button id='reset-game'>Reiniciar o Jogo</button>
-    </div>
+
+    <!-- Mensagem atual do jogo: estado inicial, acerto ou erro. -->
+    <p id="answer" aria-live="polite">Escolha uma cor</p>
+
+    <!-- Área com as melhores pontuações. -->
+    <section aria-labelledby="best-scores-title">
+      <h2 id="best-scores-title">Melhores pontuações</h2>
+      <ul id="best-scores"></ul>
+    </section>
   </main>
   <script src="script.js"></script>
 </body>
