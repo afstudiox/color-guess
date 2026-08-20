@@ -60,18 +60,19 @@ main {
   min-height: 24px;
 }
 
-/* Estiliza o botão de reiniciar o jogo. */
-#reset-game {
-  background-color: #242424;
-  border: 0;
-  border-radius: 4px;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 16px;
-  padding: 10px 16px;
+/* Organiza a lista com as melhores pontuações salvas. */
+#best-scores {
+  display: inline-block;
+  text-align: left;
+  list-style-type: none;
+  font-size: 20px;
+  padding: 0;
 }
 
-#reset-game:hover {
-  background-color: #3a3a3a;
+#best-scores-title {
+  font-size: 24px;
+  font-weight: bold;
+  font-weight: 700;
+  margin: 0;
 }
+

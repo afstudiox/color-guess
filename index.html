@@ -15,7 +15,7 @@
     <h1 id="title">Color Guess</h1>
   </header>
 
-  <!-- Área principal com desafio, placar, opções e botão de reinício. -->
+  <!-- Área principal com desafio, placar, opções e ranking. -->
   <main>
     <!-- Mostra a cor que o jogador precisa encontrar e o placar atual. -->
     <section aria-labelledby="rgb-color">
@@ -36,10 +36,11 @@
     <!-- Mensagem atual do jogo: estado inicial, acerto ou erro. -->
     <p id="answer" aria-live="polite">Escolha uma cor</p>
 
-    <!-- Controle para gerar uma nova rodada. -->
-    <div class="actions">
-      <button id="reset-game" type="button">Reiniciar o Jogo</button>
-    </div>
+    <!-- Área com as melhores pontuações. -->
+    <section aria-labelledby="best-scores-title">
+      <h2 id="best-scores-title">Melhores pontuações</h2>
+      <ul id="best-scores"></ul>
+    </section>
   </main>
   <script src="script.js"></script>
 </body>
