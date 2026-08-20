@@ -85,9 +85,5 @@ function comparaCor(event) {
 // Assim, um único listener consegue tratar o clique em qualquer bola.
 circles.addEventListener('click', comparaCor);
 
-// Adiciona um escutador de evento no botão de reiniciar.
-// Quando o botão é clicado, uma nova rodada é criada.
-btnReset.addEventListener('click', criaBalls);
-
 // Inicia o jogo assim que o script é carregado.
 criaBalls();
