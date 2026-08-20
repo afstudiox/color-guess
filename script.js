@@ -18,6 +18,12 @@ const btnReset = document.querySelector('#reset-game');
 // Seleciona o elemento onde a pontuação será exibida.
 const txtPlacar = document.querySelector('#score');
 
+// Seleciona a lista ordenada onde as melhores pontuações serão exibidas.
+const listaBestScores = document.querySelector('#best-scores');
+
+// Define a chave usada para armazenar e recuperar as melhores pontuações no localStorage.
+const BEST_SCORES_KEY = 'colorGuessBestScores';
+
 // Guarda a pontuação atual do jogador.
 // let é usado porque esse valor muda durante o jogo.
 let placar = 0;
@@ -80,6 +86,24 @@ function comparaCor(event) {
     resposta.textContent = 'Errou! Tente novamente!';
   }
 }
+
+// Recupera as melhores pontuações salvas no localStorage.
+function buscaBestScores() {
+  const scoresSalvos = localStorage.getItem(BEST_SCORES_KEY);
+
+  // Se não houver pontuações salvas, retorna um array vazio.
+  if (!scoresSalvos) {
+    return [];
+  }
+
+  // Converte a string JSON de volta para um array de números.
+  return JSON.parse(scoresSalvos);
+};
+
+// Salva as melhores pontuações no localStorage.
+function salvaBestScores(scores) {
+   localStorage.setItem(BEST_SCORES_KEY, scoresJSON);
+};
 
 // Adiciona um escutador de evento no container das bolas.
 // Assim, um único listener consegue tratar o clique em qualquer bola.
