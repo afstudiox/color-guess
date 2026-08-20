@@ -10,15 +10,20 @@
   <title>Color Guess</title>
 </head>
 <body>
+  <!-- Cabeçalho principal do jogo. -->
   <header>
     <h1 id="title">Color Guess</h1>
   </header>
+
+  <!-- Área principal com desafio, placar, opções e botão de reinício. -->
   <main>
+    <!-- Mostra a cor que o jogador precisa encontrar e o placar atual. -->
     <section aria-labelledby="rgb-color">
       <p id="rgb-color"></p>
       <p>Placar: <span id="score">0</span></p>
     </section>
 
+    <!-- Botões que representam as opções de cores. -->
     <div id="circles" aria-label="Opções de cores">
       <button class="ball" type="button" aria-label="Cor 1"></button>
       <button class="ball" type="button" aria-label="Cor 2"></button>
@@ -28,8 +33,10 @@
       <button class="ball" type="button" aria-label="Cor 6"></button>
     </div>
 
+    <!-- Mensagem atual do jogo: estado inicial, acerto ou erro. -->
     <p id="answer" aria-live="polite">Escolha uma cor</p>
 
+    <!-- Controle para gerar uma nova rodada. -->
     <div class="actions">
       <button id="reset-game" type="button">Reiniciar o Jogo</button>
     </div>
