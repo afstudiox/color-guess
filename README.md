@@ -24,8 +24,8 @@ Em uma revisão posterior, o projeto foi mantido sem frameworks ou ferramentas d
 ## Habilidades
 
 - Manipular o DOM.
-- Manipular o Javascript.
-- Manipular o CSS.
+- Lógica de programação com JavaScript.
+- Estilização com CSS.
 
 
 ## Desafios
