@@ -26,6 +26,27 @@ main {
   font-weight: 700;
 }
 
+/* Coloriza o canal vermelho (letra e valor). */
+.canal-r {
+  color: #d32f2f;
+}
+
+/* Coloriza o canal verde (letra e valor). */
+.canal-g {
+  color: #2e7d32;
+}
+
+/* Coloriza o canal azul (letra e valor). */
+.canal-b {
+  color: #1976d2;
+}
+
+/* Espaça levemente os separadores "|" entre os canais. */
+.separador {
+  color: #9e9e9e;
+  margin: 0 6px;
+}
+
 /* Organiza o grupo de botões de cores. */
 #circles {
   margin: 24px 0;
@@ -71,7 +92,6 @@ main {
 
 #best-scores-title {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   margin: 0;
 }
-

@@ -6,8 +6,10 @@ const balls = document.querySelectorAll('.ball');
 // Ele será usado para escutar cliques em qualquer bola dentro dele.
 const circles = document.querySelector('#circles');
 
-// Seleciona o parágrafo onde será exibida a cor RGB que o jogador deve adivinhar.
-const rgbOrigem = document.querySelector('#rgb-color');
+// Seleciona os três spans onde cada canal da cor-alvo será exibido.
+const spanVermelho = document.querySelector('#valor-r');
+const spanVerde = document.querySelector('#valor-g');
+const spanAzul = document.querySelector('#valor-b');
 
 // Seleciona o parágrafo usado para mostrar se o jogador acertou ou errou.
 const resposta = document.querySelector('#answer');
@@ -25,40 +27,67 @@ const BEST_SCORES_KEY = 'colorGuessBestScores';
 // let é usado porque esse valor muda durante o jogo.
 let placar = 0;
 
+// Guarda a cor que o jogador deve adivinhar na rodada atual.
+// Começa nula e é preenchida a cada rodada em criaBalls.
+let corAlvo = null;
+
 // Atualiza o texto do placar na tela com o valor atual da variável placar.
 function atualizaPlacar() {
   txtPlacar.textContent = placar;
 }
 
-// Cria uma cor RGB aleatória.
-// Cada canal de cor pode ir de 0 até 255.
+// Gera uma cor RGB aleatória.
+// Retorna um OBJETO com os três canais separados, em vez de uma string.
+// Guardar os números (dados "brutos") é a peça-chave: formatamos para
+// string somente quando precisamos exibir ou usar no CSS.
 function rgbAleatorio() {
-  const vermelho = Math.floor(Math.random() * 256);
-  const verde = Math.floor(Math.random() * 256);
-  const azul = Math.floor(Math.random() * 256);
-
-  // Retorna uma string no formato esperado pelo CSS: rgb(0, 0, 0).
-  return `rgb(${vermelho}, ${verde}, ${azul})`;
+  return {
+    vermelho: Math.floor(Math.random() * 256),
+    verde: Math.floor(Math.random() * 256),
+    azul: Math.floor(Math.random() * 256),
+  };
 }
 
-// Sorteia uma posição válida dentro da lista de bolas.
+// Converte um objeto de cor { vermelho, verde, azul } na string que o CSS entende.
+// Exemplo: { vermelho: 120, verde: 45, azul: 200 } -> "rgb(120, 45, 200)".
+function formataRGB(cor) {
+  return `rgb(${cor.vermelho}, ${cor.verde}, ${cor.azul})`;
+}
+
+// Sorteia uma posição (índice) válida dentro da lista de bolas.
 // Esse índice será usado para escolher qual cor o jogador deve adivinhar.
 function ballAleatorio() {
   return Math.floor(Math.random() * balls.length);
 }
 
-// Prepara uma nova rodada do jogo.
-function criaBalls() {
-  // Percorre todas as bolas e atribui uma cor aleatória para cada uma.
-  for (const ball of balls) {
-    ball.style.backgroundColor = rgbAleatorio();
-  }
-
-  // Escolhe uma das cores já aplicadas nas bolas e mostra essa cor como desafio.
-  rgbOrigem.textContent = balls[ballAleatorio()].style.backgroundColor;
+// Exibe os valores da cor-alvo nos três spans coloridos da tela.
+function atualizaSpans(cor) {
+  spanVermelho.textContent = cor.vermelho;
+  spanVerde.textContent = cor.verde;
+  spanAzul.textContent = cor.azul;
 }
 
-// Compara a cor clicada pelo jogador com a cor exibida no desafio.
+// Prepara uma nova rodada do jogo.
+function criaBalls() {
+  // Gera as 6 cores e pinta as bolas, guardando cada cor num array.
+  // O array "cores" preserva os OBJETOS de cor, para não perdê-los
+  // depois que viram string no backgroundColor.
+  const cores = [];
+
+  for (const ball of balls) {
+    const cor = rgbAleatorio();
+    cores.push(cor);
+    ball.style.backgroundColor = formataRGB(cor);
+  }
+
+  // Sorteia uma das 6 cores para ser o alvo da rodada.
+  corAlvo = cores[ballAleatorio()];
+
+  // Mostra os valores da cor-alvo nos spans.
+  atualizaSpans(corAlvo);
+}
+
+// Compara a cor clicada pelo jogador com a cor-alvo da rodada.
 function comparaCor(event) {
   // event.target representa o elemento exato que recebeu o clique.
   const ballClicada = event.target;
@@ -68,8 +97,9 @@ function comparaCor(event) {
     return;
   }
 
-  // Compara a cor da bola clicada com o texto da cor sorteada.
-  if (ballClicada.style.backgroundColor === rgbOrigem.textContent) {
+  // Compara a cor da bola clicada com a cor-alvo formatada em string.
+  // Como ambos são formatados pela mesma função, a comparação é confiável.
+  if (ballClicada.style.backgroundColor === formataRGB(corAlvo)) {
     registraAcerto();
   } else {
     registraErro();
@@ -159,7 +189,7 @@ function registraErro() {
 // Assim, um único listener consegue tratar o clique em qualquer bola.
 circles.addEventListener('click', comparaCor);
 
-// Cria as bolas e renderiza as melhores pontuações quando a página é carregada.
+// Inicializa o jogo quando a página é carregada.
 atualizaPlacar();
 criaBalls();
 renderizaBestScores();
