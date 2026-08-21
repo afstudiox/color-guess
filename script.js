@@ -129,6 +129,24 @@ function getBestScores() {
   }
 }
 
+// Registers the round's final score and updates the best scores list.
+function registerScore(finalScore) {
+  if (finalScore <= 0) {
+    return;
+  }
+
+  const scores = getBestScores();
+
+  scores.push(finalScore);
+
+  const bestScores = scores
+    .sort((currentScore, nextScore) => nextScore - currentScore)
+    .slice(0, 3);
+
+  saveBestScores(bestScores);
+  renderBestScores();
+}
+
 // Saves the best scores to localStorage.
 function saveBestScores(scores) {
   const scoresJSON = JSON.stringify(scores);
@@ -154,24 +172,6 @@ function handleCorrectGuess() {
   updateScore();
   createBalls();
   feedback.textContent = 'Acertou! Nova cor sorteada.';
-}
-
-// Registers the round's final score and updates the best scores list.
-function registerScore(finalScore) {
-  if (finalScore <= 0) {
-    return;
-  }
-
-  const scores = getBestScores();
-
-  scores.push(finalScore);
-
-  const bestScores = scores
-    .sort((currentScore, nextScore) => nextScore - currentScore)
-    .slice(0, 3);
-
-  saveBestScores(bestScores);
-  renderBestScores();
 }
 
 // Ends the round when the player guesses wrong.
