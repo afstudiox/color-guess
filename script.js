@@ -1,123 +1,123 @@
-// Seleciona todos os elementos com a classe "ball".
-// querySelectorAll retorna uma lista de elementos, porque existem várias bolas no HTML.
+// Selects every element with the "ball" class.
+// querySelectorAll returns a list of elements, because there are several balls in the HTML.
 const balls = document.querySelectorAll('.ball');
 
-// Seleciona o elemento que agrupa todas as bolas.
-// Ele será usado para escutar cliques em qualquer bola dentro dele.
+// Selects the element that groups all the balls.
+// It will be used to listen for clicks on any ball inside it.
 const circles = document.querySelector('#circles');
 
-// Seleciona os três spans onde cada canal da cor-alvo será exibido.
-const spanVermelho = document.querySelector('#valor-r');
-const spanVerde = document.querySelector('#valor-g');
-const spanAzul = document.querySelector('#valor-b');
+// Selects the three spans where each channel of the target color is displayed.
+const redValue = document.querySelector('#value-r');
+const greenValue = document.querySelector('#value-g');
+const blueValue = document.querySelector('#value-b');
 
-// Seleciona o parágrafo usado para mostrar se o jogador acertou ou errou.
-const resposta = document.querySelector('#answer');
+// Selects the paragraph used to show whether the player guessed right or wrong.
+const feedback = document.querySelector('#answer');
 
-// Seleciona o elemento onde a pontuação será exibida.
-const txtPlacar = document.querySelector('#score');
+// Selects the element where the score is displayed.
+const scoreText = document.querySelector('#score');
 
-// Seleciona a lista ordenada onde as melhores pontuações serão exibidas.
-const listaBestScores = document.querySelector('#best-scores');
+// Selects the ordered list where the best scores are displayed.
+const bestScoresList = document.querySelector('#best-scores');
 
-// Define a chave usada para armazenar e recuperar as melhores pontuações no localStorage.
+// Defines the key used to store and retrieve the best scores in localStorage.
 const BEST_SCORES_KEY = 'colorGuessBestScores';
 
-// Guarda a pontuação atual do jogador.
-// let é usado porque esse valor muda durante o jogo.
-let placar = 0;
+// Holds the player's current score.
+// let is used because this value changes during the game.
+let score = 0;
 
-// Guarda a cor que o jogador deve adivinhar na rodada atual.
-// Começa nula e é preenchida a cada rodada em criaBalls.
-let corAlvo = null;
+// Holds the color the player must guess in the current round.
+// Starts as null and is filled on every round in createBalls.
+let targetColor = null;
 
-// Atualiza o texto do placar na tela com o valor atual da variável placar.
-function atualizaPlacar() {
-  txtPlacar.textContent = placar;
+// Updates the score text on screen with the current value of the score variable.
+function updateScore() {
+  scoreText.textContent = score;
 }
 
-// Gera uma cor RGB aleatória.
-// Retorna um OBJETO com os três canais separados, em vez de uma string.
-// Guardar os números (dados "brutos") é a peça-chave: formatamos para
-// string somente quando precisamos exibir ou usar no CSS.
-function rgbAleatorio() {
+// Generates a random RGB color.
+// Returns an OBJECT with the three channels separated, instead of a string.
+// Keeping the numbers (the "raw" data) is the key: we format them into a
+// string only when we need to display or use them in CSS.
+function randomRgb() {
   return {
-    vermelho: Math.floor(Math.random() * 256),
-    verde: Math.floor(Math.random() * 256),
-    azul: Math.floor(Math.random() * 256),
+    red: Math.floor(Math.random() * 256),
+    green: Math.floor(Math.random() * 256),
+    blue: Math.floor(Math.random() * 256),
   };
 }
 
-// Converte um objeto de cor { vermelho, verde, azul } na string que o CSS entende.
-// Exemplo: { vermelho: 120, verde: 45, azul: 200 } -> "rgb(120, 45, 200)".
-function formataRGB(cor) {
-  return `rgb(${cor.vermelho}, ${cor.verde}, ${cor.azul})`;
+// Converts a color object { red, green, blue } into the string CSS understands.
+// Example: { red: 120, green: 45, blue: 200 } -> "rgb(120, 45, 200)".
+function formatRgb(color) {
+  return `rgb(${color.red}, ${color.green}, ${color.blue})`;
 }
 
-// Sorteia uma posição (índice) válida dentro da lista de bolas.
-// Esse índice será usado para escolher qual cor o jogador deve adivinhar.
-function ballAleatorio() {
+// Draws a valid position (index) within the list of balls.
+// This index will be used to choose which color the player must guess.
+function randomBall() {
   return Math.floor(Math.random() * balls.length);
 }
 
-// Exibe os valores da cor-alvo nos três spans coloridos da tela.
-function atualizaSpans(cor) {
-  spanVermelho.textContent = cor.vermelho;
-  spanVerde.textContent = cor.verde;
-  spanAzul.textContent = cor.azul;
+// Displays the target color values in the three colored spans on screen.
+function updateRgbDisplay(color) {
+  redValue.textContent = color.red;
+  greenValue.textContent = color.green;
+  blueValue.textContent = color.blue;
 }
 
-// Prepara uma nova rodada do jogo.
-function criaBalls() {
-  // Gera as 6 cores e pinta as bolas, guardando cada cor num array.
-  // O array "cores" preserva os OBJETOS de cor, para não perdê-los
-  // depois que viram string no backgroundColor.
-  const cores = [];
+// Prepares a new round of the game.
+function createBalls() {
+  // Generates the 6 colors and paints the balls, storing each color in an array.
+  // The "colors" array preserves the color OBJECTS, so we don't lose them
+  // after they become a string in backgroundColor.
+  const colors = [];
 
   for (const ball of balls) {
-    const cor = rgbAleatorio();
-    cores.push(cor);
-    ball.style.backgroundColor = formataRGB(cor);
+    const color = randomRgb();
+    colors.push(color);
+    ball.style.backgroundColor = formatRgb(color);
   }
 
-  // Sorteia uma das 6 cores para ser o alvo da rodada.
-  corAlvo = cores[ballAleatorio()];
+  // Draws one of the 6 colors to be the round's target.
+  targetColor = colors[randomBall()];
 
-  // Mostra os valores da cor-alvo nos spans.
-  atualizaSpans(corAlvo);
+  // Shows the target color values in the spans.
+  updateRgbDisplay(targetColor);
 }
 
-// Compara a cor clicada pelo jogador com a cor-alvo da rodada.
-function comparaCor(event) {
-  // event.target representa o elemento exato que recebeu o clique.
-  const ballClicada = event.target;
+// Compares the clicked color with the round's target color.
+function handleBallClick(event) {
+  // event.target represents the exact element that received the click.
+  const clickedBall = event.target;
 
-  // Evita que cliques no container sejam tratados como tentativa de resposta.
-  if (!ballClicada.classList.contains('ball')) {
+  // Prevents clicks on the container from being treated as an answer attempt.
+  if (!clickedBall.classList.contains('ball')) {
     return;
   }
 
-  // Compara a cor da bola clicada com a cor-alvo formatada em string.
-  // Como ambos são formatados pela mesma função, a comparação é confiável.
-  if (ballClicada.style.backgroundColor === formataRGB(corAlvo)) {
-    registraAcerto();
+  // Compares the clicked ball's color with the target color formatted as a string.
+  // Since both are formatted by the same function, the comparison is reliable.
+  if (clickedBall.style.backgroundColor === formatRgb(targetColor)) {
+    handleCorrectGuess();
   } else {
-    registraErro();
+    handleWrongGuess();
   }
 }
 
-// Recupera as melhores pontuações salvas no localStorage.
-function buscaBestScores() {
-  const scoresSalvos = localStorage.getItem(BEST_SCORES_KEY);
+// Retrieves the best scores saved in localStorage.
+function getBestScores() {
+  const savedScores = localStorage.getItem(BEST_SCORES_KEY);
 
-  // Se não houver pontuações salvas, retorna um array vazio.
-  if (!scoresSalvos) {
+  // If there are no saved scores, returns an empty array.
+  if (!savedScores) {
     return [];
   }
 
   try {
-    // Converte a string JSON de volta para um array de números.
-    const scores = JSON.parse(scoresSalvos);
+    // Converts the JSON string back into an array of numbers.
+    const scores = JSON.parse(savedScores);
 
     if (!Array.isArray(scores)) {
       return [];
@@ -129,67 +129,67 @@ function buscaBestScores() {
   }
 }
 
-// Salva as melhores pontuações no localStorage.
-function salvaBestScores(scores) {
+// Saves the best scores to localStorage.
+function saveBestScores(scores) {
   const scoresJSON = JSON.stringify(scores);
   localStorage.setItem(BEST_SCORES_KEY, scoresJSON);
 }
 
-// Renderiza as melhores pontuações na tela.
-function renderizaBestScores() {
-  const scores = buscaBestScores();
+// Renders the best scores on screen.
+function renderBestScores() {
+  const scores = getBestScores();
 
-  listaBestScores.innerHTML = '';
+  bestScoresList.innerHTML = '';
 
   for (const score of scores) {
     const item = document.createElement('li');
     item.textContent = `${score} pontos`;
-    listaBestScores.appendChild(item);
+    bestScoresList.appendChild(item);
   }
 }
 
-// Atualiza a pontuação da rodada quando o jogador acerta.
-function registraAcerto() {
-  placar += 3;
-  atualizaPlacar();
-  criaBalls();
-  resposta.textContent = 'Acertou! Nova cor sorteada.';
+// Updates the round score when the player guesses correctly.
+function handleCorrectGuess() {
+  score += 3;
+  updateScore();
+  createBalls();
+  feedback.textContent = 'Acertou! Nova cor sorteada.';
 }
 
-// Registra a pontuação final da rodada e atualiza a lista de melhores pontuações.
-function registraPontuacao(pontuacaoFinal) {
-  if (pontuacaoFinal <= 0) {
+// Registers the round's final score and updates the best scores list.
+function registerScore(finalScore) {
+  if (finalScore <= 0) {
     return;
   }
 
-  const scores = buscaBestScores();
+  const scores = getBestScores();
 
-  scores.push(pontuacaoFinal);
+  scores.push(finalScore);
 
-  const melhoresScores = scores
-    .sort((scoreAtual, proximoScore) => proximoScore - scoreAtual)
+  const bestScores = scores
+    .sort((currentScore, nextScore) => nextScore - currentScore)
     .slice(0, 3);
 
-  salvaBestScores(melhoresScores);
-  renderizaBestScores();
+  saveBestScores(bestScores);
+  renderBestScores();
 }
 
-// Finaliza a rodada quando o jogador erra.
-function registraErro() {
-  const pontuacaoFinal = placar;
+// Ends the round when the player guesses wrong.
+function handleWrongGuess() {
+  const finalScore = score;
 
-  registraPontuacao(pontuacaoFinal);
-  placar = 0;
-  atualizaPlacar();
-  criaBalls();
-  resposta.textContent = `Errou! Pontuação registrada: ${pontuacaoFinal}.`;
+  registerScore(finalScore);
+  score = 0;
+  updateScore();
+  createBalls();
+  feedback.textContent = `Errou! Pontuação registrada: ${finalScore}.`;
 }
 
-// Adiciona um escutador de evento no container das bolas.
-// Assim, um único listener consegue tratar o clique em qualquer bola.
-circles.addEventListener('click', comparaCor);
+// Adds an event listener on the balls container.
+// This way, a single listener can handle clicks on any ball.
+circles.addEventListener('click', handleBallClick);
 
-// Inicializa o jogo quando a página é carregada.
-atualizaPlacar();
-criaBalls();
-renderizaBestScores();
+// Initializes the game when the page loads.
+updateScore();
+createBalls();
+renderBestScores();
