@@ -1,11 +1,31 @@
+/* 1. Importando fontes estilo Arcade / Game */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap');
+
+/* 2. Variáveis de Cores Neon (para reusar no código) */
+:root {
+  --bg-dark: #0a0f1d;
+  --neon-cyan: #00f0ff;
+  --neon-pink: #ff00a0;
+  --neon-green: #00ff66;
+  --text-white: #ffffff;
+  --font-main: 'Rajdhani', sans-serif;
+  --font-code: 'Share Tech Mono', monospace;
+}
+
 /* General page styles. */
 body {
-  background-color: #f7f7f7;
-  color: #242424;
-  font-family: 'Lato', sans-serif;
-  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: var(--font-main);
   min-height: 100vh;
-  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 0, 160, 0.08) 0%, transparent 50%),
 }
 
 /* Centers and limits the width of the main content. */
