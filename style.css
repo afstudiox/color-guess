@@ -36,7 +36,15 @@ main {
 }
 
 #title {
-  margin-top: 48px;
+  color: var(--neon-cyan);
+  font-size: 48px;
+  letter-spacing: 4px;
+  margin: 0 0 8px;
+  text-align: center;
+  text-shadow:
+    0 0 8px rgba(0, 240, 255, 0.8),
+    0 0 20px rgba(0, 240, 255, 0.5);
+  text-transform: uppercase;
 }
 
 /* Highlights the RGB code the player must guess. */
