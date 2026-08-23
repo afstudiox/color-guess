@@ -23,9 +23,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255, 0, 160, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 0, 160, 0.08) 0%, transparent 50%);
 }
 
 /* Centers and limits the width of the main content. */
@@ -41,7 +41,7 @@ main {
 
 /* Highlights the RGB code the player must guess. */
 #rgb-color {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 20px;
   font-weight: 700;
 }
