@@ -49,30 +49,41 @@ main {
 
 /* Highlights the RGB code the player must guess. */
 #rgb-color {
+  background-color: rgba(5, 10, 30, 0.8);
+  border: 1px solid rgba(255, 0, 160, 0.6);
+  border-radius: 16px;
+  box-shadow:
+    0 0 12px rgba(255, 0, 160, 0.4),
+    inset 0 0 18px rgba(0, 240, 255, 0.08);
   font-family: var(--font-code);
-  font-size: 20px;
+  font-size: clamp(22px, 7vw, 40px);
   font-weight: 700;
+  margin: 16px 0;
+  padding: 20px;
+  text-align: center;
+  white-space: nowrap;
 }
 
-/* Colors the red channel (letter and value). */
 .channel-r {
-  color: #d32f2f;
+  color: #ff4d67;
+  text-shadow: 0 0 10px rgba(255, 77, 103, 0.8);
 }
 
-/* Colors the green channel (letter and value). */
 .channel-g {
-  color: #2e7d32;
+  color: #39ff88;
+  text-shadow: 0 0 10px rgba(57, 255, 136, 0.8);
 }
 
-/* Colors the blue channel (letter and value). */
 .channel-b {
-  color: #1976d2;
+  color: #668cff;
+  text-shadow: 0 0 10px rgba(102, 140, 255, 0.8);
 }
 
 /* Lightly spaces the "|" separators between the channels. */
 .separator {
-  color: #9e9e9e;
+  color: var(--text-white);
   margin: 0 6px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
 }
 
 /* Organizes the group of color buttons. */
