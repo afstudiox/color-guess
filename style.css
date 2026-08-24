@@ -88,31 +88,44 @@ main {
 
 /* Organizes the group of color buttons. */
 #circles {
-  margin: 24px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(12px, 3vw, 16px);
+  justify-content: center;
+  margin: 32px 0;
 }
 
 /* Defines the circular shape and visual interaction of the color options. */
 .ball {
-  border: 2px solid #242424;
+  border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
+  box-shadow:
+    inset 0 0 12px rgba(255, 255, 255, 0.35),
+    0 0 14px rgba(0, 240, 255, 0.35);
   cursor: pointer;
-  display: inline-block;
-  height: 50px;
-  margin: 8px;
+  flex: 0 0 auto;
+  height: clamp(56px, 14vw, 68px);
   padding: 0;
-  transition: transform 0.2s ease;
-  width: 50px;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  width: clamp(56px, 14vw, 68px);
 }
 
 /* Slightly enlarges the ball on mouse hover. */
 .ball:hover {
-  transform: scale(1.08);
+  box-shadow:
+    inset 0 0 14px rgba(255, 255, 255, 0.5),
+    0 0 22px rgba(0, 240, 255, 0.65);
+  filter: brightness(1.15);
+  transform: scale(1.1);
 }
 
 /* Shows a visual highlight when the ball receives keyboard focus. */
 .ball:focus {
-  outline: 3px solid #2f80ed;
-  outline-offset: 3px;
+  outline: 3px solid var(--neon-cyan);
+  outline-offset: 4px;
 }
 
 /* Reserves space for the right/wrong message. */
