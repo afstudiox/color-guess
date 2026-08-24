@@ -19,7 +19,7 @@ _Requisitos_
     <img
       src="./assets/images/color-guess-preview.png"
       alt="Interface do jogo Color Guess"
-      width="70%"
+      width="100%"
     >
   </a>
 </p>
