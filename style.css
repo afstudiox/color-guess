@@ -12,6 +12,8 @@
   --font-code: 'Share Tech Mono', monospace;
 }
 
+
+
 /* General page styles. */
 body {
   background-color: var(--bg-dark);
@@ -199,17 +201,57 @@ main {
   text-shadow: 0 0 10px rgba(255, 77, 103, 0.7);
 }
 
+main > section:last-of-type {
+  background-color: rgba(5, 10, 30, 0.7);
+  border: 1px solid rgba(255, 0, 160, 0.35);
+  border-radius: 14px;
+  box-shadow:
+    0 0 16px rgba(255, 0, 160, 0.18),
+    inset 0 0 18px rgba(0, 240, 255, 0.05);
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+}
+
 /* Organizes the list with the saved best scores. */
 #best-scores {
-  display: inline-block;
-  text-align: left;
-  list-style-type: none;
-  font-size: 20px;
+  counter-reset: ranking;
+  display: grid;
+  font-family: var(--font-code);
+  font-size: 18px;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
   padding: 0;
+  text-align: left;
+  width: 100%;
 }
 
 #best-scores-title {
+  color: var(--neon-pink);
   font-size: 24px;
   font-weight: 700;
-  margin: 0;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+  text-shadow: 0 0 10px rgba(255, 0, 160, 0.6);
+  text-transform: uppercase;
+}
+
+#best-scores li {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--neon-cyan);
+  border-radius: 6px;
+  counter-increment: ranking;
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+#best-scores li::before {
+  color: var(--neon-cyan);
+  content: counter(ranking) ".";
+  font-weight: 700;
+  min-width: 20px;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
 }
