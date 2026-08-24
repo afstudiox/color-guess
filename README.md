@@ -1,10 +1,9 @@
 # Projeto Color Guess
 
+
 ## Sobre
 
 Aplicação de um jogo que tem por objetivo adivinhar a cor do código RGB apresentado, clicando nos círculos coloridos. A pontuação é atualizada conforme os acertos.
-
-[Teste a aplicação aqui](https://afstudiox.github.io/color-guess/)
 
 _Observações_
   - As cores são criadas dinamicamente.
@@ -12,6 +11,18 @@ _Observações_
 
 _Requisitos_
   - Utilizar somente HTML5, CSS e JavaScript ES6.
+
+## Demonstração
+
+<p>
+  <a href="https://afstudiox.github.io/color-guess/">
+    <img
+      src="./assets/images/color-guess-preview.png"
+      alt="Interface do jogo Color Guess"
+      width="70%"
+    >
+  </a>
+</p>
 
 
 ## Contexto
