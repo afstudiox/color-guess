@@ -157,7 +157,46 @@ main {
 
 /* Reserves space for the right/wrong message. */
 #answer {
-  min-height: 24px;
+  align-items: center;
+  background-color: rgba(5, 10, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: inset 0 0 14px rgba(0, 240, 255, 0.08);
+  box-sizing: border-box;
+  color: var(--text-white);
+  display: flex;
+  font-family: var(--font-code);
+  font-size: 18px;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin: 24px 0;
+  min-height: 50px;
+  padding: 12px 16px;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+#answer.answer-correct {
+  border-color: rgba(0, 255, 102, 0.7);
+  box-shadow:
+    inset 0 0 14px rgba(0, 255, 102, 0.12),
+    0 0 14px rgba(0, 255, 102, 0.3);
+  color: var(--neon-green);
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.7);
+}
+
+#answer.answer-wrong {
+  border-color: rgba(255, 77, 103, 0.7);
+  box-shadow:
+    inset 0 0 14px rgba(255, 77, 103, 0.12),
+    0 0 14px rgba(255, 77, 103, 0.3);
+  color: #ff4d67;
+  text-shadow: 0 0 10px rgba(255, 77, 103, 0.7);
 }
 
 /* Organizes the list with the saved best scores. */

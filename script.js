@@ -166,12 +166,23 @@ function renderBestScores() {
   }
 }
 
+// Updates the feedback message and its visual state.
+function updateFeedback(message, stateClass) {
+  feedback.textContent = message;
+
+  feedback.classList.remove('answer-correct', 'answer-wrong');
+  feedback.classList.add(stateClass);
+}
+
 // Updates the round score when the player guesses correctly.
 function handleCorrectGuess() {
   score += 3;
   updateScore();
   createBalls();
-  feedback.textContent = 'Acertou! Nova cor sorteada.';
+  updateFeedback(
+  'Acertou! Nova cor sorteada.',
+  'answer-correct',
+  );
 }
 
 // Ends the round when the player guesses wrong.
@@ -182,7 +193,10 @@ function handleWrongGuess() {
   score = 0;
   updateScore();
   createBalls();
-  feedback.textContent = `Errou! Pontuação registrada: ${finalScore}.`;
+  updateFeedback(
+    `Errou! Pontuação registrada: ${finalScore}.`,
+    'answer-wrong',
+  );
 }
 
 // Adds an event listener on the balls container.
