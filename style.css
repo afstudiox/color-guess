@@ -64,6 +64,33 @@ main {
   white-space: nowrap;
 }
 
+#rgb-color + p {
+  align-items: center;
+  background-color: rgba(5, 10, 30, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+  display: flex;
+  font-family: var(--font-code);
+  gap: 8px;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin: 0 auto;
+  padding: 8px 18px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+#score {
+  color: var(--neon-cyan);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow:
+    0 0 8px rgba(0, 240, 255, 0.8),
+    0 0 16px rgba(0, 240, 255, 0.4);
+}
+
 .channel-r {
   color: #ff4d67;
   text-shadow: 0 0 10px rgba(255, 77, 103, 0.8);
